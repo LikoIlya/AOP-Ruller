@@ -1,0 +1,38 @@
+﻿<Window x:Class="AOP_Ruler.Theory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:AOP_Ruler"
+        mc:Ignorable="d"
+        Title="Теорія" Height="700" Width="1300" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" MinWidth="980" MinHeight="300" ScrollViewer.VerticalScrollBarVisibility="Auto" Closing="Window_Closing" Icon="dublicate.ico">
+    <Window.Background>
+        <RadialGradientBrush Center="0,1" GradientOrigin="0,1" RadiusX="1" RadiusY="1">
+            <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
+            <GradientStop Color="White" Offset="1"/>
+        </RadialGradientBrush>
+    </Window.Background>
+    <DockPanel>
+        <TreeView x:Name="treeView" HorizontalAlignment="Left" FontSize="16" Width="435" BorderBrush="{x:Null}">
+            <TreeView.Background>
+                <RadialGradientBrush Center="0,1" GradientOrigin="0,1" RadiusX="1" RadiusY="1">
+                    <GradientStop Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </RadialGradientBrush>
+            </TreeView.Background>
+            <TreeViewItem x:Name="Що_таке_АОП" Header="Що таке АОП" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected" ToolTip="{Binding Header, ElementName=Що_таке_АОП}"/>
+            <TreeViewItem x:Name="АОП_як_можлива_еволюція_ООП" Header="АОП як можлива еволюція ООП" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected" ToolTip="{Binding Header, ElementName=АОП_як_можлива_еволюція_ООП}">
+                <TreeViewItem x:Name="Причини_виникнення" Header="Причини виникнення" Margin="5,5,5.4,5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected" ToolTip="{Binding Header, ElementName=Причини_виникнення}"/>
+                <TreeViewItem x:Name="Постановка_завдання" ToolTip="{Binding Header, ElementName = Постановка_завдання}" Header="Постановка завдання" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected"/>
+                <TreeViewItem x:Name="Реалізації" Header="Реалізації" ToolTip="{Binding Header, ElementName = Реалізації}" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected"/>
+                <TreeViewItem x:Name="Структура_агента" Header="Структура агента" ToolTip="{Binding Header, ElementName = Структура_агента}" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected"/>
+                <TreeViewItem x:Name="Загальні_Приклади_використання" ToolTip="{Binding Header, ElementName = Загальні_Приклади_використання}" Header="Загальні Приклади використання" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected"/>
+            </TreeViewItem>
+
+            <TreeViewItem x:Name="Порівняння_ООП_та_АОП" Header="Порівняння ООП та АОП" Margin="5" Selected="TreeViewItem_Selected" Unselected="TreeViewItem_Unselected" ToolTip="{Binding Header, ElementName=Порівняння_ООП_та_АОП}"/>
+        </TreeView>
+        <RichTextBox x:Name="Browser">
+        </RichTextBox>
+    </DockPanel>
+</Window>

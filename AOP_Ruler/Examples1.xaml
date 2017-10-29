@@ -1,0 +1,74 @@
+﻿<Window x:Class="AOP_Ruler.Examples1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOP_Ruler"
+        mc:Ignorable="d"
+        Title="Приклади" Height="700" Width="1300" Closed="Examples_FormClosed" WindowStartupLocation="CenterScreen" Icon="dublicate.ico" MinHeight="650" MinWidth="450">
+    <Window.Resources>
+        <Style x:Key="imgStyle" TargetType="StackPanel">
+            <Style.Setters>
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect BlurRadius="20" Color="Black" Opacity="0.25" ShadowDepth="1"/>
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect BlurRadius="20" Color="Black" Opacity="0.9" ShadowDepth="3"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <DockPanel>
+        <Grid Margin="20,0,20,20" DockPanel.Dock="Bottom" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10" Grid.ColumnSpan="4">
+                <Label x:Name="lblStatus" Content="No file selected..." HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18.667"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
+                    <Button Margin="10,0" FontFamily="Webdings" Content="9" Width="40" FontSize="26.667" TabIndex="0" Click="Button_Click" ToolTip="Попереднє відео"/>
+                    <Button Margin="10,0" FontFamily="Webdings" Width="40" FontSize="26.667" Click="btnPlay_Click" TabIndex="1" ToolTip="Програти">
+                        4
+                    </Button>
+                    <Button Margin="10,0" FontFamily="Webdings" Width="40" FontSize="26.667" Click="btnPause_Click" TabIndex="2" ToolTip="Пауза">
+                        ;
+                    </Button>
+                    <Button Margin="10,0" FontFamily="Webdings" Content="&lt;" Width="40" FontSize="26.667" Click="btnStop_Click" TabIndex="3" ToolTip="Зупинити"/>
+                    <Button Margin="10,0" FontFamily="Webdings" Content=":" Width="40" FontSize="26.667" TabIndex="4" Click="Button_Click_1" ToolTip="Наступне відео"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Style="{StaticResource imgStyle}" Grid.Row="1" Margin="5" MouseUp="StackPanel_MouseUp" Tag="0" ToolTip="{Binding Text, ElementName=lbl1}">
+                <Image MaxHeight="120" x:Name="bmp1"/>
+                <TextBlock TextWrapping="Wrap" x:Name="lbl1" FontSize="13.333" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel  Style="{StaticResource imgStyle}" Grid.Column="1" Grid.Row="1" Margin="5" MouseUp="StackPanel_MouseUp" Tag="1" ToolTip="{Binding Text, ElementName=lbl2}">
+                <Image MaxHeight="120" x:Name="bmp2"/>
+                <TextBlock TextWrapping="Wrap" x:Name="lbl2" FontSize="13.333" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource imgStyle}" Grid.Column="2" Grid.Row="1" Margin="5" MouseUp="StackPanel_MouseUp" Tag="2" ToolTip="{Binding Text, ElementName=lbl3}">
+                <Image MaxHeight="120" x:Name="bmp3"/>
+                <TextBlock TextWrapping="Wrap" x:Name="lbl3" FontSize="13.333" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Style="{StaticResource imgStyle}" Grid.Column="3" Grid.Row="1" Margin="5" MouseUp="StackPanel_MouseUp" Tag="3" ToolTip="{Binding Text, ElementName=lbl4}">
+                <Image MaxHeight="120" x:Name="bmp4"/>
+                <TextBlock TextWrapping="Wrap" x:Name="lbl4" FontSize="13.333" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+        <MediaElement x:Name="mePlayer" Volume="1" ScrubbingEnabled="True" MouseUp="mePlayer_MouseUp" LoadedBehavior="Manual"/>
+    </DockPanel>
+</Window>

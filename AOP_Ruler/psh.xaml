@@ -1,0 +1,158 @@
+﻿<ResourceDictionary x:Class="_3D_Gallery.ListBoxGalleryTemplate"
+                    x:ClassModifier="public"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+    <Style x:Key="ListBoxGallery" TargetType="{x:Type ListBox}">
+        <Setter Property="ItemsPanel" Value="{DynamicResource ItemsPanelTemplate}"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ListBoxItemStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <!-- Структура ListBox -->
+                    <Border x:Name="Bd" SnapsToDevicePixels="True" Background="Transparent">
+                        <ScrollViewer Padding="{TemplateBinding Padding}" Focusable="False">
+                            <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </ScrollViewer>
+                    </Border>
+                    <!-- Триггеры -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="True">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Изменяем контейнер ListBoxItem на Grid -->
+    <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+        <Grid  IsItemsHost="True"/>
+    </ItemsPanelTemplate>
+
+    <!-- Стиль и шаблон для элементов ListBoxItem -->
+    <Style x:Key="ListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="2,0,0,0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border  x:Name="Bd" SnapsToDevicePixels="True"  Background="#EEFFFFFF" BorderBrush="#FFCCCCCC"  RenderTransformOrigin="1,0.5" 
+                             HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1" Padding="2" Margin="5,5,5,5">
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <RotateTransform Angle="{Binding XPath=Rotation}" x:Name="transRotation"/>
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                        <Grid SnapsToDevicePixels="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Image x:Name="img" Source="{Binding XPath=Source}" Height="200" Stretch="Uniform" RenderTransformOrigin="0,0" SnapsToDevicePixels="True">
+                                <Image.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="1" ScaleY="1" x:Name="scaleTrans"/>
+                                    </TransformGroup>
+                                </Image.RenderTransform>
+                            </Image>
+                            <TextBlock Text="{Binding XPath=Rotation}" Visibility="Collapsed" Loaded="TextBlock_Loaded"/>
+                            <Button Visibility="Collapsed" Style="{DynamicResource closeButtonStyle}" x:Name="closeButton" Click="closeButton_Click"  VerticalAlignment="Top" Width="20" Height="20" HorizontalAlignment="Right" Margin="0,5,5,0" Content="X"/>
+                            <Border Grid.Row="1" Height="30" VerticalAlignment="Bottom" x:Name="txtBorder"  BorderThickness="0,2,0,0" Background="#22FFFFFF">
+                                <TextBlock x:Name="desc" Margin="5,0,0,0" VerticalAlignment="Center" FontWeight="Bold" Text="{Binding XPath=Description}" Foreground="#FF1C1C1C">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <TranslateTransform X="0" Y="0" x:Name="transX"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="transX" Storyboard.TargetProperty="X" To="10" Duration="00:00:00.3"/>
+                                        <ColorAnimation Storyboard.TargetName="desc" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                        To="#FF32EBFB" Duration="00:00:00.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="transX" Storyboard.TargetProperty="X" To="0" Duration="00:00:00.3"/>
+                                        <ColorAnimation Storyboard.TargetName="desc" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                        To="#FF1C1C1C" Duration="00:00:00.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Visibility" TargetName="closeButton" Value="Visible"/>
+                            <Setter Property="Panel.ZIndex" Value="1"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="img" Storyboard.TargetProperty="Height" 
+                                                             To="400" Duration="00:00:00.3"/>
+                                        <DoubleAnimation Storyboard.TargetName="transRotation" Storyboard.TargetProperty="Angle" 
+                                                             To="0" Duration="00:00:00.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard >
+                                    <Storyboard >
+                                        <DoubleAnimation FillBehavior="HoldEnd" Storyboard.TargetName="img" Storyboard.TargetProperty="Height" 
+                                                             To="200" Duration="00:00:00.3"/>
+                                        <DoubleAnimation Changed="DoubleAnimation_Changed"  FillBehavior="Stop" Storyboard.TargetName="transRotation" Storyboard.TargetProperty="Angle" 
+                                                            Duration="00:00:00.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Дополнительная кисть -->
+    <LinearGradientBrush x:Key="ControlBackgroundOver" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#FF605F5F" Offset="0"/>
+        <GradientStop Color="#FF030303" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Кнопка "Закрыть" на картинке -->
+    <Style x:Key="closeButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border  Background="{StaticResource ControlBackgroundOver}" BorderBrush="#FFCCCCCC" BorderThickness="1" CornerRadius="2">
+                        <TextBlock x:Name="textX" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" VerticalAlignment="Center" Text="X" 
+                                   Foreground="#FFEEEFFF" FontWeight="Bold"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="textX" Property="RenderTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX=".8" ScaleY=".8"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

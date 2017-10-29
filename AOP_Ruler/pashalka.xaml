@@ -1,0 +1,25 @@
+﻿<Window x:Class="AOP_Ruler.pashalka"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOP_Ruler"
+        mc:Ignorable="d"
+        Title="pashalka" Height="600" Width="600" ResizeMode="NoResize">
+    <Window.Resources>
+        <XmlDataProvider x:Key="DataDS" Source="gallery.xml" />
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="repeating-wood-background-tileable-dark-wood-textures-6-600x600.jpg" Stretch="None" TileMode="Tile"/>
+    </Window.Background>
+    <Grid>
+        <ListBox  Style="{DynamicResource ListBoxGallery}"  x:Name="lb"
+                 ItemsSource="{Binding Mode=Default, Source={StaticResource DataDS}, XPath=/Gallery/Image}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 >
+            <ListBox.Background>
+                <ImageBrush ImageSource="repeating-wood-background-tileable-dark-wood-textures-6-600x600.jpg" TileMode="Tile"/>
+            </ListBox.Background>
+        </ListBox>
+    </Grid>
+</Window>

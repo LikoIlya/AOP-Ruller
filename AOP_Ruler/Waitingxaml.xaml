@@ -1,0 +1,12 @@
+﻿<Window x:Class="AOP_Ruler.Waitingxaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AOP_Ruler"
+        mc:Ignorable="d"
+        Title="Зачекайте" WindowStyle="None" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Topmost="True" WindowStartupLocation="CenterScreen" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" IsManipulationEnabled="True" ShowInTaskbar="False" Icon="dublicate.ico" Background="#00000000" AllowsTransparency="True">
+    <Border BorderBrush="Black" CornerRadius="15" BorderThickness="2" Background="White">
+        <TextBlock Text="Будь ласка нічого не чіпайте, йде прорахунок..." Margin="30"/>
+    </Border>
+</Window>

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Gallery>
+  <Image>
+    <Source>Images/img1.jpg</Source>
+    <BigImage>Images/img1.jpg</BigImage>
+    <Description>Motivation №1</Description>
+    <Rotation>-40</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img2.jpg</Source>
+    <BigImage>Images/img2.jpg</BigImage>
+    <Description>Motivation №2</Description>
+    <Rotation>-30</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img3.jpg</Source>
+    <Description>Motivation №3</Description>
+    <Rotation>-20</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img4.jpg</Source>
+    <Description>Motivation №4</Description>
+    <Rotation>-10</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img5.jpg</Source>
+    <Description>Motivation №5</Description>
+    <Rotation>0</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img6.jpg</Source>
+    <Description>Motivation №6</Description>
+    <Rotation>10</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img7.jpg</Source>
+    <Description>Motivation №7</Description>
+    <Rotation>20</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img8.jpg</Source>
+    <Description>Motivation №8</Description>
+    <Rotation>30</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img9.jpg</Source>
+    <Description>Motivation №9</Description>
+    <Rotation>40</Rotation>
+  </Image>
+  <Image>
+    <Source>Images/img10.jpg</Source>
+    <Description>Motivation №10</Description>
+    <Rotation>50</Rotation>
+  </Image>
+</Gallery>
